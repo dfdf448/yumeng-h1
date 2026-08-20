@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#08090c" />
+    <title>欲梦 H1 — 听见未被听见的</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      :root { --bg:#08090c; --panel:#101218; --line:rgba(255,255,255,.13); --ink:#f7f7f4; --muted:#9da0a8; --acid:#d9ff4a; --blue:#6aa8ff; }
+      * { box-sizing:border-box; }
+      html { scroll-behavior:smooth; background:var(--bg); }
+      body { margin:0; color:var(--ink); background:var(--bg); font-family:Manrope,"Microsoft YaHei",sans-serif; overflow-x:hidden; }
+      a { color:inherit; text-decoration:none; }
+      .mono { font-family:"DM Mono",monospace; font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; }
+      .nav { position:fixed; z-index:20; top:0; width:100%; display:flex; justify-content:space-between; align-items:center; padding:26px clamp(20px,4vw,64px); mix-blend-mode:difference; }
+      .logo { font-weight:800; font-size:1.05rem; letter-spacing:.27em; }
+      .nav-links { display:flex; align-items:center; gap:30px; color:#d6d6d4; }
+      .nav-links a { font-size:.72rem; letter-spacing:.08em; }
+      .nav .bag { border:1px solid rgba(255,255,255,.55); padding:9px 15px; border-radius:999px; }
+      .hero { position:relative; min-height:100svh; display:grid; align-items:end; padding:clamp(110px,13vh,165px) clamp(20px,4vw,64px) 54px; isolation:isolate; overflow:hidden; }
+      .hero::before { content:""; position:absolute; z-index:-1; inset:0; background:linear-gradient(90deg,rgba(8,9,12,.97) 0%,rgba(8,9,12,.63) 38%,rgba(8,9,12,.08) 75%),linear-gradient(0deg,rgba(8,9,12,.82),transparent 42%); }
+      .hero::after { content:""; position:absolute; z-index:-2; inset:0; background:url('assets/headphones-hero.png') center/cover no-repeat; animation:slowZoom 14s ease-out both; }
+      @keyframes slowZoom { from { transform:scale(1.06); } to { transform:scale(1); } }
+      .hero-copy { max-width:780px; }
+      .eyebrow { display:flex; gap:12px; align-items:center; color:var(--acid); margin-bottom:22px; }
+      .eyebrow::before { content:""; width:26px; height:1px; background:currentColor; }
+      h1 { margin:0; font-size:clamp(4.1rem,10.4vw,10rem); line-height:.83; letter-spacing:-.085em; font-weight:800; }
+      h1 span { display:block; color:transparent; -webkit-text-stroke:1px rgba(255,255,255,.72); }
+      .hero-bottom { display:flex; align-items:end; justify-content:space-between; gap:30px; margin-top:52px; }
+      .hero-bottom p { max-width:330px; margin:0; color:#c8c9cc; line-height:1.8; font-size:.9rem; }
+      .round-button { display:grid; place-items:center; width:90px; height:90px; border-radius:50%; background:var(--acid); color:#11130c; font-weight:800; font-size:.75rem; text-align:center; transition:transform .25s; }
+      .round-button:hover { transform:scale(1.08) rotate(-7deg); }
+      .scroll-cue { position:absolute; right:clamp(20px,4vw,64px); bottom:56px; writing-mode:vertical-rl; color:#b1b3b8; }
+      .scroll-cue::after { content:""; display:block; width:1px; height:42px; margin:12px auto 0; background:linear-gradient(var(--acid),transparent); }
+      section { position:relative; }
+      .marquee { border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:18px 0; overflow:hidden; white-space:nowrap; color:#dfe1d7; }
+      .marquee div { display:inline-block; animation:slide 23s linear infinite; font-size:clamp(1.6rem,3vw,3.2rem); letter-spacing:-.05em; font-weight:700; }
+      .marquee b { color:var(--acid); margin:0 .5em; font-weight:400; }
+      @keyframes slide { to { transform:translateX(-50%); } }
+      .intro { display:grid; grid-template-columns:1fr 2.1fr; padding:clamp(90px,14vw,190px) clamp(20px,10vw,160px); gap:8vw; }
+      .section-tag { color:var(--acid); padding-top:10px; }
+      .intro h2 { font-size:clamp(2.5rem,5.1vw,5.7rem); line-height:1.03; letter-spacing:-.065em; margin:0; max-width:900px; }
+      .intro h2 em { font-style:normal; color:#777b83; }
+      .stats { grid-column:2; display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--line); margin-top:42px; }
+      .stat { padding:22px 20px 10px 0; border-right:1px solid var(--line); }
+      .stat:not(:first-child) { padding-left:20px; }
+      .stat:last-child { border:0; }
+      .stat strong { display:block; font-size:clamp(2rem,3vw,3.5rem); letter-spacing:-.08em; }
+      .stat small { color:var(--muted); display:block; margin-top:8px; }
+      .experience { padding:0 clamp(20px,4vw,64px) 130px; }
+      .experience-head { display:flex; justify-content:space-between; align-items:flex-end; border-bottom:1px solid var(--line); padding-bottom:20px; }
+      .experience h2 { margin:8px 0 0; font-size:clamp(2.6rem,5vw,5rem); letter-spacing:-.07em; }
+      .feature-grid { display:grid; grid-template-columns:1.1fr 1fr 1fr; gap:14px; margin-top:14px; }
+      .feature { min-height:420px; position:relative; overflow:hidden; padding:26px; background:linear-gradient(135deg,#171a22,#0d0e12); border-radius:4px; display:flex; flex-direction:column; justify-content:flex-end; }
+      .feature:first-child { grid-row:span 2; min-height:854px; background:radial-gradient(circle at 45% 30%,#26466d 0, #161a27 26%,#0c0e12 65%); }
+      .feature::before { content:""; position:absolute; inset:20px; border:1px solid rgba(255,255,255,.12); border-radius:2px; pointer-events:none; }
+      .feature .number { position:absolute; top:27px; left:27px; color:var(--acid); }
+      .feature h3 { position:relative; margin:0; font-size:clamp(1.5rem,2.2vw,2.4rem); letter-spacing:-.06em; }
+      .feature p { position:relative; margin:10px 0 0; max-width:270px; color:#abb0b9; font-size:.82rem; line-height:1.7; }
+      .orb { position:absolute; width:350px; aspect-ratio:1; border-radius:50%; border:12px solid rgba(173,211,255,.35); box-shadow:0 0 50px rgba(81,150,255,.35), inset 0 0 70px rgba(81,150,255,.25); top:18%; left:50%; transform:translateX(-50%) rotate(-20deg); }
+      .orb::before,.orb::after { content:""; position:absolute; width:96px; height:135px; border:12px solid rgba(220,230,243,.5); border-radius:46px; background:rgba(4,8,15,.55); top:68%; }
+      .orb::before { left:-38px; } .orb::after { right:-38px; }
+      .wave { position:absolute; height:50%; width:140%; left:-20%; top:18%; background:repeating-radial-gradient(ellipse at 50% 100%,transparent 0 21px,rgba(217,255,74,.55) 22px 23px,transparent 24px 39px); transform:rotate(-11deg); opacity:.8; }
+      .dots { position:absolute; inset:0; opacity:.55; background-image:radial-gradient(var(--blue) 1px,transparent 1px); background-size:13px 13px; mask-image:linear-gradient(to bottom,black,transparent 65%); }
+      .sound { padding:clamp(90px,12vw,160px) clamp(20px,9vw,150px); background:#e9ebe4; color:#101217; overflow:hidden; }
+      .sound .section-tag { color:#3252d8; }
+      .sound h2 { margin:20px 0 60px; max-width:950px; font-size:clamp(3.5rem,7vw,7.8rem); line-height:.91; letter-spacing:-.085em; }
+      .sound h2 span { color:#3252d8; }
+      .sound-content { display:grid; grid-template-columns:1fr 1fr; gap:30px; align-items:end; }
+      .equalizer { display:flex; height:230px; align-items:end; gap:clamp(7px,1vw,16px); }
+      .equalizer i { width:clamp(9px,1.8vw,22px); background:#3252d8; border-radius:9px 9px 0 0; animation:beats 1.7s ease-in-out infinite alternate; }
+      .equalizer i:nth-child(2n) { animation-delay:-.8s; background:#101217; } .equalizer i:nth-child(3n) { animation-delay:-.35s; height:55%!important; }
+      @keyframes beats { from { height:16%; } to { height:100%; } }
+      .sound p { max-width:390px; margin:0 0 7px auto; line-height:1.8; font-size:.94rem; }
+      .product { padding:120px clamp(20px,4vw,64px) 44px; min-height:100svh; display:flex; flex-direction:column; justify-content:space-between; background:radial-gradient(circle at 50% 55%,#1c2638 0, #090a0e 46%); }
+      .product-top { display:flex; align-items:start; justify-content:space-between; }
+      .product h2 { max-width:780px; font-size:clamp(3rem,7vw,7rem); line-height:.88; letter-spacing:-.09em; margin:20px 0; }
+      .product h2 span { color:var(--acid); }
+      .price { font-size:1.15rem; margin-top:24px; }
+      .colors { display:flex; gap:10px; }
+      .colors button { width:22px; height:22px; padding:0; border-radius:50%; border:2px solid transparent; cursor:pointer; background:#aeb2b0; } .colors button:first-child { background:#141518; outline:1px solid white; outline-offset:3px; } .colors button:nth-child(2) { background:#c9c5ba; } .colors button:nth-child(3) { background:#706e85; }
+      .purchase { align-self:flex-end; display:flex; align-items:center; gap:24px; }
+      .purchase small { max-width:160px; color:var(--muted); line-height:1.5; }
+      .buy { background:var(--acid); color:#101207; border:0; border-radius:999px; padding:18px 31px; font:700 .8rem Manrope,sans-serif; cursor:pointer; transition:transform .2s,background .2s; }
+      .buy:hover { transform:translateY(-3px); background:white; }
+      footer { display:flex; justify-content:space-between; align-items:center; padding:22px clamp(20px,4vw,64px); border-top:1px solid var(--line); color:var(--muted); }
+      @media (max-width:760px) { .nav-links a:not(.bag) { display:none; } .scroll-cue { display:none; } .hero-bottom { margin-top:36px; } .intro { grid-template-columns:1fr; padding-inline:20px; } .stats { grid-column:auto; } .feature-grid { grid-template-columns:1fr; } .feature,.feature:first-child { min-height:370px; grid-row:auto; } .sound-content { grid-template-columns:1fr; } .sound p { margin:0; } .product-top { display:block; } .purchase { align-self:stretch; justify-content:space-between; } }
+    </style>
+  </head>
+  <body>
+    <nav class="nav"><a class="logo" href="#top">欲梦</a><div class="nav-links"><a href="#experience">体验</a><a href="#sound">声学</a><a href="#shop">购买</a><a class="bag" href="#shop">H1 / 01</a></div></nav>
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy"><div class="eyebrow mono">Introducing YUMENG H1</div><h1>听见<br><span>未被听见的。</span></h1><div class="hero-bottom"><p>为那些不满足于“听到”的人而生。沉浸式空间音频、智能降噪与无感佩戴，回到声音本来的样子。</p><a class="round-button" href="#experience">探索<br>声场 ↓</a></div></div><div class="scroll-cue mono">Scroll to listen</div>
+      </section>
+      <section class="marquee" aria-label="产品关键词"><div>PURE SOUND <b>✳</b> SILENCE, REIMAGINED <b>✳</b> ENGINEERED FOR IMMERSION <b>✳</b> PURE SOUND <b>✳</b> SILENCE, REIMAGINED <b>✳</b> ENGINEERED FOR IMMERSION <b>✳</b> </div></section>
+      <section class="intro"><div class="section-tag mono">01 / A new dimension</div><div><h2>声音，不该被设备束缚。<em>它应该占据你的整个世界。</em></h2><div class="stats"><div class="stat"><strong>40h</strong><small class="mono">全场景续航</small></div><div class="stat"><strong>−48dB</strong><small class="mono">自适应降噪</small></div><div class="stat"><strong>24-bit</strong><small class="mono">无损解析力</small></div></div></div></section>
+      <section class="experience" id="experience"><div class="experience-head"><div><div class="section-tag mono">02 / Built around you</div><h2>沉入声场。</h2></div><span class="mono">01 — 03</span></div><div class="feature-grid"><article class="feature"><span class="number mono">01</span><div class="orb"></div><h3>自适应静界</h3><p>8 枚麦克风持续描绘环境，在噪声抵达之前，先让它消失。</p></article><article class="feature"><span class="number mono">02</span><div class="wave"></div><h3>空间追踪</h3><p>头部移动，声场不动。每一处细节都留在它该在的位置。</p></article><article class="feature"><span class="number mono">03</span><div class="dots"></div><h3>为长久聆听而造</h3><p>记忆泡棉与 318g 配重，让专注不必忍耐。</p></article></div></section>
+      <section class="sound" id="sound"><div class="section-tag mono">03 / Acoustic architecture</div><h2>感受每一次<br><span>呼吸的震动。</span></h2><div class="sound-content"><div class="equalizer" aria-hidden="true"><i style="height:42%"></i><i style="height:76%"></i><i style="height:31%"></i><i style="height:92%"></i><i style="height:58%"></i><i style="height:82%"></i><i style="height:38%"></i><i style="height:67%"></i><i style="height:50%"></i><i style="height:86%"></i><i style="height:25%"></i><i style="height:62%"></i></div><p>40mm 钕磁驱动单元以更宽阔的动态范围，重现录音室里最细微的呼吸、指尖与空气。不是修饰声音，而是把它完整地还给你。</p></div></section>
+      <section class="product" id="shop"><div class="product-top"><div><div class="section-tag mono">YUMENG H1 / midnight</div><h2>一个更安静的<br><span>世界。</span></h2><div class="price">¥ 2,499</div></div><div class="colors" aria-label="颜色选择"><button aria-label="午夜黑"></button><button aria-label="雾银"></button><button aria-label="暮紫"></button></div></div><div class="purchase"><small class="mono">Free shipping / 30-day return</small><button class="buy" onclick="this.textContent='已加入购物袋 ✓'">加入购物袋 — ¥ 2,499</button></div></section>
+    </main>
+    <footer><span class="logo">欲梦 H1</span><span class="mono">Designed for deeper listening / 2026</span></footer>
+  </body>
+</html>
