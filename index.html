@@ -3,130 +3,120 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#03050a" />
-    <meta name="description" content="欲梦 H1 沉浸式空间声场耳机，电影感滚动产品体验。" />
-    <title>欲梦 H1｜听见未被听见的</title>
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2303050a'/%3E%3Cpath d='M17 34a15 15 0 0 1 30 0v12h-7V34a8 8 0 0 0-16 0v12h-7Z' fill='%2374e8ff'/%3E%3C/svg%3E" />
+    <meta name="theme-color" content="#080706" />
+    <meta name="description" content="中国历史博物馆数字概念展——滚动穿行于青铜、秦汉与丝路文明。" />
+    <title>中国历史博物馆｜文明，从此有形</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23080706'/%3E%3Cpath d='M12 26h40L32 12 12 26Zm5 5h6v18h-6V31Zm12 0h6v18h-6V31Zm12 0h6v18h-6V31ZM11 52h42v4H11v-4Z' fill='%23d8ae68'/%3E%3C/svg%3E" />
     <style>
-      :root { --ink:#f4f7f4; --dim:#8d96a6; --signal:#71e9ff; --acid:#caff35; --line:rgba(255,255,255,.18); --bg:#03050a; }
+      :root { --paper:#f2eadc; --muted:#aaa092; --gold:#d8ae68; --cinnabar:#cf4e32; --jade:#779482; --line:rgba(242,234,220,.2); --bg:#080706; }
       * { box-sizing:border-box; }
       html,body { width:100%; height:100%; margin:0; overflow:hidden; background:var(--bg); }
-      body { color:var(--ink); font-family:Arial,"Microsoft YaHei",sans-serif; -webkit-font-smoothing:antialiased; }
+      body { color:var(--paper); font-family:"Microsoft YaHei","PingFang SC",Arial,sans-serif; -webkit-font-smoothing:antialiased; }
       button { color:inherit; font:inherit; }
-      .mono { font-family:"Cascadia Mono","SFMono-Regular",Consolas,monospace; letter-spacing:.13em; text-transform:uppercase; }
-      .cinema { position:relative; width:100%; height:100dvh; min-height:620px; isolation:isolate; background:#03050a; }
-      .film,.fallback { position:absolute; z-index:-5; inset:0; width:100%; height:100%; object-fit:cover; object-position:64% center; }
-      .film { filter:saturate(.92) contrast(1.06); }
-      .fallback { z-index:-6; background:url("assets/scene-01-reveal.png") 64% center/cover no-repeat; }
-      .cinema::before { content:""; position:absolute; z-index:-3; inset:0; background:linear-gradient(90deg,rgba(3,5,10,.94) 0%,rgba(3,5,10,.65) 32%,rgba(3,5,10,.08) 67%),linear-gradient(0deg,rgba(3,5,10,.76),transparent 38%,rgba(3,5,10,.18)); pointer-events:none; }
-      .cinema::after { content:""; position:absolute; z-index:8; inset:0; opacity:.2; pointer-events:none; background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px); background-size:4px 4px; mix-blend-mode:soft-light; }
-      .scan { position:absolute; z-index:7; inset:0; pointer-events:none; opacity:.13; background:repeating-linear-gradient(0deg,transparent 0 3px,rgba(116,232,255,.1) 4px); }
-      .frame { position:absolute; z-index:9; inset:22px; border:1px solid rgba(255,255,255,.12); pointer-events:none; }
-      .frame::before,.frame::after { content:""; position:absolute; width:28px; height:28px; border-color:rgba(255,255,255,.55); }
+      .mono { font-family:"Cascadia Mono","SFMono-Regular",Consolas,monospace; letter-spacing:.16em; text-transform:uppercase; }
+      .museum { position:relative; width:100%; height:100dvh; min-height:620px; isolation:isolate; background:#080706; }
+      .scene { position:absolute; z-index:-7; inset:-2%; background-image:var(--image); background-size:cover; background-position:65% center; opacity:0; transform:scale(1.08); filter:saturate(.82) contrast(1.06); transition:opacity .9s ease,transform 2.4s cubic-bezier(.18,.78,.2,1); }
+      .scene.active { opacity:1; transform:scale(1); }
+      .museum::before { content:""; position:absolute; z-index:-4; inset:0; background:linear-gradient(90deg,rgba(8,7,6,.95) 0%,rgba(8,7,6,.72) 34%,rgba(8,7,6,.08) 70%),linear-gradient(0deg,rgba(8,7,6,.76),transparent 42%,rgba(8,7,6,.18)); pointer-events:none; }
+      .grain { position:absolute; z-index:8; inset:0; opacity:.14; pointer-events:none; background-image:repeating-radial-gradient(circle at 20% 30%,rgba(255,255,255,.16) 0 1px,transparent 1px 4px); background-size:5px 5px; mix-blend-mode:soft-light; }
+      .frame { position:absolute; z-index:9; inset:22px; border:1px solid rgba(242,234,220,.15); pointer-events:none; }
+      .frame::before,.frame::after { content:""; position:absolute; width:30px; height:30px; border-color:rgba(216,174,104,.72); }
       .frame::before { top:-1px; left:-1px; border-top:1px solid; border-left:1px solid; }
       .frame::after { right:-1px; bottom:-1px; border-right:1px solid; border-bottom:1px solid; }
-      .topbar { position:absolute; z-index:20; top:0; left:0; right:0; display:flex; align-items:center; justify-content:space-between; padding:34px clamp(32px,4vw,72px); }
-      .brand { display:flex; align-items:baseline; gap:12px; font-weight:900; font-size:1.05rem; letter-spacing:.14em; }
-      .brand small { color:var(--dim); font-size:.56rem; font-weight:500; }
-      .controls { display:flex; align-items:center; gap:10px; }
-      .status,.sound { border:1px solid var(--line); background:rgba(3,5,10,.42); backdrop-filter:blur(14px); border-radius:999px; padding:10px 14px; font-size:.58rem; cursor:pointer; }
-      .status { color:var(--signal); cursor:default; }
-      .status::before { content:""; display:inline-block; width:6px; height:6px; border-radius:50%; margin-right:8px; background:currentColor; box-shadow:0 0 12px currentColor; }
-      .sound:hover { border-color:var(--signal); }
-      .copy { position:absolute; z-index:15; left:clamp(34px,6vw,108px); bottom:clamp(92px,12vh,150px); width:min(650px,52vw); transition:opacity .28s ease,transform .5s cubic-bezier(.2,.8,.2,1); }
-      .copy.changing { opacity:0; transform:translateY(18px); }
-      .chapter { display:flex; align-items:center; gap:13px; margin-bottom:18px; color:var(--signal); font-size:.61rem; }
-      .chapter::before { content:""; width:34px; height:1px; background:currentColor; }
-      h1 { max-width:730px; margin:0; font-size:clamp(4.7rem,9.4vw,10rem); line-height:.79; letter-spacing:-.09em; font-weight:900; text-wrap:balance; }
-      h1 .outline { display:block; color:transparent; -webkit-text-stroke:1px rgba(244,247,244,.72); }
-      .desc { width:min(440px,100%); margin:30px 0 0; color:#c9ced6; line-height:1.8; font-size:.88rem; }
+      .topbar { position:absolute; z-index:20; top:0; left:0; right:0; display:flex; justify-content:space-between; align-items:center; padding:34px clamp(32px,4.5vw,78px); }
+      .brand { display:flex; align-items:baseline; gap:14px; font-family:STKaiti,"KaiTi",serif; font-size:1.12rem; font-weight:700; letter-spacing:.12em; }
+      .brand small { color:var(--muted); font:500 .52rem "Cascadia Mono",Consolas,monospace; letter-spacing:.14em; }
+      .badge { padding:10px 14px; border:1px solid var(--line); border-radius:999px; color:var(--gold); background:rgba(8,7,6,.5); backdrop-filter:blur(12px); font-size:.55rem; }
+      .badge::before { content:""; display:inline-block; width:6px; height:6px; margin-right:8px; border-radius:50%; background:var(--cinnabar); box-shadow:0 0 10px var(--cinnabar); }
+      .copy { position:absolute; z-index:15; left:clamp(36px,6vw,110px); bottom:clamp(98px,12vh,150px); width:min(680px,54vw); transition:opacity .28s ease,transform .45s ease; }
+      .copy.changing { opacity:0; transform:translateY(20px); }
+      .chapter { display:flex; align-items:center; gap:13px; margin-bottom:18px; color:var(--gold); font-size:.58rem; }
+      .chapter::before { content:""; width:36px; height:1px; background:var(--cinnabar); box-shadow:0 0 8px rgba(207,78,50,.5); }
+      h1 { margin:0; font-family:STKaiti,"KaiTi",serif; font-size:clamp(5rem,9.8vw,10.8rem); line-height:.78; letter-spacing:-.08em; font-weight:900; text-wrap:balance; }
+      h1 .outline { display:block; color:transparent; -webkit-text-stroke:1px rgba(242,234,220,.76); }
+      .desc { width:min(470px,100%); margin:30px 0 0; color:#d0c8bb; font-size:.88rem; line-height:1.9; }
       .facts { display:flex; gap:34px; margin-top:28px; }
-      .fact { padding-top:12px; border-top:1px solid var(--line); min-width:110px; }
-      .fact b { display:block; font-size:1.2rem; }
-      .fact span { display:block; margin-top:5px; color:var(--dim); font-size:.5rem; }
+      .fact { min-width:118px; padding-top:11px; border-top:1px solid var(--line); }
+      .fact b { display:block; font-family:Georgia,"Times New Roman",serif; font-size:1.15rem; color:var(--gold); }
+      .fact span { display:block; margin-top:6px; color:var(--muted); font-size:.48rem; }
       .rail { position:absolute; z-index:20; right:clamp(34px,4vw,72px); top:50%; transform:translateY(-50%); display:grid; gap:14px; }
-      .rail button { display:grid; grid-template-columns:24px 24px; align-items:center; border:0; padding:0; color:#687181; background:transparent; cursor:pointer; font:.56rem "Cascadia Mono",Consolas,monospace; }
-      .rail button::after { content:""; display:block; width:20px; height:1px; background:currentColor; transition:width .3s,color .3s,box-shadow .3s; }
-      .rail button.active { color:var(--acid); }
-      .rail button.active::after { width:34px; box-shadow:0 0 12px currentColor; }
-      .bottom { position:absolute; z-index:20; left:clamp(34px,4vw,72px); right:clamp(34px,4vw,72px); bottom:34px; display:grid; grid-template-columns:1fr minmax(220px,32vw) 1fr; align-items:end; gap:28px; }
-      .hint { color:var(--dim); font-size:.55rem; }
-      .hint strong { color:var(--ink); font-weight:500; }
+      .rail button { display:grid; grid-template-columns:25px 25px; align-items:center; border:0; padding:0; color:#746d63; background:transparent; cursor:pointer; font:.55rem "Cascadia Mono",Consolas,monospace; }
+      .rail button::after { content:""; width:20px; height:1px; background:currentColor; transition:width .3s,color .3s; }
+      .rail button.active { color:var(--gold); }
+      .rail button.active::after { width:36px; background:var(--cinnabar); box-shadow:0 0 10px var(--cinnabar); }
+      .bottom { position:absolute; z-index:20; left:clamp(36px,4vw,72px); right:clamp(36px,4vw,72px); bottom:34px; display:grid; grid-template-columns:1fr minmax(220px,32vw) 1fr; gap:28px; align-items:end; }
+      .hint,.counter { color:var(--muted); font-size:.52rem; }
+      .hint strong,.counter strong { color:var(--paper); font-weight:500; }
       .timeline { position:relative; height:16px; }
-      .timeline::before { content:""; position:absolute; left:0; right:0; top:7px; height:1px; background:var(--line); }
-      .timeline i { position:absolute; left:0; top:6px; height:2px; width:0%; background:var(--signal); box-shadow:0 0 10px var(--signal); transition:width .1s linear; }
-      .counter { justify-self:end; color:var(--dim); font-size:.55rem; }
-      .counter strong { color:var(--ink); font-size:.82rem; }
-      .loader { position:absolute; z-index:40; inset:0; display:grid; place-items:center; background:#03050a; transition:opacity .6s ease,visibility .6s; }
+      .timeline::before { content:""; position:absolute; top:7px; left:0; right:0; height:1px; background:var(--line); }
+      .timeline i { position:absolute; top:6px; left:0; width:25%; height:2px; background:linear-gradient(90deg,var(--cinnabar),var(--gold)); box-shadow:0 0 10px rgba(207,78,50,.45); transition:width 1s cubic-bezier(.2,.8,.2,1); }
+      .counter { justify-self:end; }
+      .counter strong { font-size:.8rem; }
+      .seal { position:absolute; z-index:14; right:clamp(90px,9vw,160px); bottom:clamp(90px,11vh,135px); width:76px; height:76px; display:grid; place-items:center; border:1px solid rgba(207,78,50,.65); color:var(--cinnabar); font-family:STKaiti,"KaiTi",serif; font-size:1.4rem; line-height:1.05; text-align:center; transform:rotate(4deg); background:rgba(8,7,6,.32); backdrop-filter:blur(5px); }
+      .flash { position:absolute; z-index:13; inset:0; opacity:0; background:var(--cinnabar); pointer-events:none; mix-blend-mode:screen; }
+      .flash.go { animation:flash .55s ease-out; }
+      @keyframes flash { 0%{opacity:.14} 100%{opacity:0} }
+      .loader { position:absolute; z-index:40; inset:0; display:grid; place-items:center; background:#080706; transition:opacity .6s,visibility .6s; }
       .loader.hidden { opacity:0; visibility:hidden; pointer-events:none; }
-      .loader-inner { text-align:center; }
-      .loader-mark { width:72px; height:72px; margin:0 auto 22px; border:1px solid var(--line); border-radius:50%; display:grid; place-items:center; color:var(--signal); animation:pulse 1.3s ease-in-out infinite; }
-      .loader p { margin:0; color:var(--dim); font-size:.58rem; }
-      @keyframes pulse { 50% { box-shadow:0 0 34px rgba(113,233,255,.28); transform:scale(1.04); } }
-      .flash { position:absolute; z-index:13; inset:0; background:var(--signal); opacity:0; pointer-events:none; mix-blend-mode:screen; }
-      .flash.go { animation:flash .45s ease-out; }
-      @keyframes flash { 0% { opacity:.18; } 100% { opacity:0; } }
-      .preload { display:none; }
+      .loader-mark { width:82px; height:82px; display:grid; place-items:center; border:1px solid rgba(207,78,50,.6); color:var(--gold); font-family:STKaiti,"KaiTi",serif; font-size:1.8rem; animation:pulse 1.5s ease-in-out infinite; }
+      @keyframes pulse { 50%{box-shadow:0 0 34px rgba(207,78,50,.22);transform:scale(1.03)} }
       @media(max-width:760px) {
-        .cinema { min-height:560px; }
-        .film,.fallback { object-position:67% center; }
-        .cinema::before { background:linear-gradient(0deg,rgba(3,5,10,.98) 0%,rgba(3,5,10,.67) 43%,rgba(3,5,10,.08) 74%); }
+        .museum { min-height:560px; }
+        .scene { background-position:67% center; }
+        .museum::before { background:linear-gradient(0deg,rgba(8,7,6,.98) 0%,rgba(8,7,6,.7) 47%,rgba(8,7,6,.08) 77%); }
         .frame { inset:12px; }
-        .topbar { padding:26px 22px; }
+        .topbar { padding:25px 22px; }
         .brand { font-size:.9rem; }
-        .brand small,.status { display:none; }
-        .sound { padding:9px 11px; }
-        .copy { left:22px; right:42px; bottom:105px; width:auto; }
-        .chapter { margin-bottom:13px; font-size:.53rem; }
-        h1 { font-size:clamp(3.5rem,17vw,5.6rem); line-height:.84; }
-        .desc { margin-top:20px; font-size:.76rem; line-height:1.7; }
-        .facts { gap:18px; margin-top:18px; }
-        .fact { min-width:88px; padding-top:8px; }
+        .brand small,.badge { display:none; }
+        .copy { left:22px; right:44px; bottom:105px; width:auto; }
+        .chapter { margin-bottom:12px; font-size:.49rem; }
+        h1 { font-size:clamp(3.7rem,18vw,5.8rem); line-height:.83; }
+        .desc { margin-top:19px; font-size:.75rem; line-height:1.72; }
+        .facts { gap:18px; margin-top:17px; }
+        .fact { min-width:90px; padding-top:8px; }
         .fact b { font-size:.95rem; }
         .rail { right:18px; gap:11px; }
-        .rail button { grid-template-columns:18px 12px; font-size:.48rem; }
+        .rail button { grid-template-columns:18px 12px; font-size:.46rem; }
         .rail button::after { width:10px; }
         .rail button.active::after { width:16px; }
-        .bottom { left:22px; right:22px; bottom:24px; grid-template-columns:1fr 105px; gap:18px; }
+        .bottom { left:22px; right:22px; bottom:24px; grid-template-columns:1fr 100px; gap:16px; }
         .timeline { display:none; }
-        .counter { font-size:.48rem; }
+        .seal { display:none; }
       }
       @media(prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms!important; transition-duration:.01ms!important; } }
     </style>
   </head>
   <body>
-    <main class="cinema" aria-label="欲梦 H1 电影感产品体验">
-      <div class="fallback" aria-hidden="true"></div>
-      <video class="film" id="film" preload="auto" playsinline muted poster="assets/scene-01-reveal.png"><source src="assets/yumeng-h1-film.mp4" type="video/mp4" /></video>
-      <div class="scan" aria-hidden="true"></div><div class="frame" aria-hidden="true"></div><div class="flash" id="flash" aria-hidden="true"></div>
-      <header class="topbar"><div class="brand">欲梦 <small class="mono">YUMENG H1 / PRIVATE LISTENING DEVICE</small></div><div class="controls"><span class="status mono" id="status">signal loading</span><button class="sound mono" id="sound" type="button" aria-pressed="false">sound off</button></div></header>
-      <section class="copy" id="copy" aria-live="polite"><div class="chapter mono" id="chapter">00 / signal ready</div><h1 id="title">欲梦 H1<span class="outline">听见之外</span></h1><p class="desc" id="desc">把声音从左右之间释放出来。滚动一次，进入一段完整的空间声场。</p><div class="facts" id="facts"><div class="fact"><b>15s</b><span class="mono">cinematic signal</span></div><div class="fact"><b>4</b><span class="mono">chapters</span></div></div></section>
-      <nav class="rail" aria-label="章节导航"><button type="button" data-scene="0" aria-label="播放第一章">01</button><button type="button" data-scene="1" aria-label="播放第二章">02</button><button type="button" data-scene="2" aria-label="播放第三章">03</button><button type="button" data-scene="3" aria-label="播放第四章">04</button></nav>
-      <footer class="bottom"><div class="hint mono"><strong>scroll once</strong> / ↑ ↓ / enter<br />一次只播放完整一段</div><div class="timeline" aria-hidden="true"><i id="progress"></i></div><div class="counter mono"><strong id="now">00</strong> / 04 &nbsp;·&nbsp; <span id="time">00.0</span>s</div></footer>
-      <div class="loader" id="loader"><div class="loader-inner"><div class="loader-mark mono">H1</div><p class="mono" id="loaderText">loading spatial signal</p></div></div>
-      <div class="preload" aria-hidden="true"><img src="assets/scene-02-macro.png" alt="" /><img src="assets/scene-03-spatial.png" alt="" /><img src="assets/scene-04-hero.png" alt="" /></div>
-      <noscript>请启用 JavaScript 体验欲梦 H1 的分段滚动影片。</noscript>
+    <main class="museum" aria-label="中国历史博物馆数字概念展">
+      <div class="scene active" style="--image:url('assets/museum-01-civilization.png')" aria-hidden="true"></div>
+      <div class="scene" style="--image:url('assets/museum-02-bronze.png')" aria-hidden="true"></div>
+      <div class="scene" style="--image:url('assets/museum-03-qinhan.png')" aria-hidden="true"></div>
+      <div class="scene" style="--image:url('assets/museum-04-silkroad.png')" aria-hidden="true"></div>
+      <div class="grain" aria-hidden="true"></div><div class="frame" aria-hidden="true"></div><div class="flash" id="flash" aria-hidden="true"></div>
+      <header class="topbar"><div class="brand">中国历史博物馆 <small>CHINESE HISTORY MUSEUM · DIGITAL CONCEPT</small></div><span class="badge mono">digital exhibition</span></header>
+      <section class="copy" id="copy" aria-live="polite"><div class="chapter mono" id="chapter">序章 / civilization awakens</div><h1 id="title">文明<span class="outline">从此有形</span></h1><p class="desc" id="desc">器物从泥土与火中诞生。金石之声越过漫长时间，在今天重新被看见。</p><div class="facts" id="facts"><div class="fact"><b>序</b><span class="mono">prologue</span></div><div class="fact"><b>青铜</b><span class="mono">bronze & ritual</span></div></div></section>
+      <div class="seal" aria-hidden="true">华夏<br />文明</div>
+      <nav class="rail" aria-label="历史章节"><button class="active" type="button" data-scene="0" aria-label="序章">01</button><button type="button" data-scene="1" aria-label="青铜时代">02</button><button type="button" data-scene="2" aria-label="秦汉时代">03</button><button type="button" data-scene="3" aria-label="丝路盛世">04</button></nav>
+      <footer class="bottom"><div class="hint mono"><strong>scroll through history</strong> / ↑ ↓ / enter<br />滚动一次，进入一个时代</div><div class="timeline" aria-hidden="true"><i id="progress"></i></div><div class="counter mono"><strong id="now">01</strong> / 04 &nbsp;·&nbsp; <span id="status">序章</span></div></footer>
+      <div class="loader" id="loader"><div class="loader-mark">史</div></div>
     </main>
     <script>
-      const film=document.querySelector('#film'),copy=document.querySelector('#copy'),chapter=document.querySelector('#chapter'),title=document.querySelector('#title'),desc=document.querySelector('#desc'),facts=document.querySelector('#facts'),status=document.querySelector('#status'),loader=document.querySelector('#loader'),loaderText=document.querySelector('#loaderText'),progress=document.querySelector('#progress'),now=document.querySelector('#now'),time=document.querySelector('#time'),sound=document.querySelector('#sound'),flash=document.querySelector('#flash'),railButtons=[...document.querySelectorAll('.rail button')];
       const scenes=[
-        {start:0,end:3.2,chapter:'01 / form emerging',title:'进入静界<span class="outline">轮廓初醒</span>',desc:'黑暗不是缺席，而是让每一寸轮廓被重新听见。钴蓝边缘光从头梁滑向耳罩。',facts:[['00:00','full form'],['50mm','slow push']]},
-        {start:3.2,end:6.8,chapter:'02 / material close-up',title:'触摸声音的<span class="outline">表面</span>',desc:'圆形拉丝金属耳罩捕捉一道窄光。径向纹理、皮革与金属，在近距离里留下精密触感。',facts:[['radial','brushed metal'],['100mm','macro']]},
-        {start:6.8,end:11.2,chapter:'03 / spatial field',title:'空间不再<span class="outline">只有左右</span>',desc:'声压圆环由内向外展开，声音离开平面，围绕你建立具有方向与距离的沉浸声场。',facts:[['360°','spatial field'],['08°','slow orbit']]},
-        {start:11.2,end:14.9,chapter:'04 / final signal',title:'听见<span class="outline">未被听见的</span>',desc:'欲梦 H1。为追求高端音质与设计感的人，留下一处只属于自己的声音空间。',facts:[['H1','yumeng'],['15s','signal complete']]}
+        {chapter:'序章 / civilization awakens',title:'文明<span class="outline">从此有形</span>',desc:'器物从泥土与火中诞生。金石之声越过漫长时间，在今天重新被看见。',facts:[['序','prologue'],['青铜','bronze & ritual']],status:'序章'},
+        {chapter:'青铜 / bronze & ritual',title:'礼制<span class="outline">铸进金石</span>',desc:'纹饰、铭文与铸造痕迹，把秩序与信念留在青铜表面。光掠过时，时间显出纹理。',facts:[['金石','ritual vessel'],['纹样','cast relief']],status:'青铜'},
+        {chapter:'秦汉 / unity & order',title:'天下<span class="outline">归于一统</span>',desc:'从制度、文字到道路，新的秩序铺展山河。陶俑无言，却守望着一个时代的尺度。',facts:[['秦汉','unity'],['陶俑','terracotta']],status:'秦汉'},
+        {chapter:'丝路 / roads of exchange',title:'万里<span class="outline">共此回响</span>',desc:'器物、技艺与想象沿道路相遇。盛世不只属于一座城，也存在于文明彼此照亮的时刻。',facts:[['丝路','exchange'],['三彩','tang glaze']],status:'丝路'}
       ];
-      let current=-1,locked=false,ready=false,reverseFrame=0,touchStart=0;
-      function setReady(){if(ready)return;ready=true;loaderText.textContent='signal ready';status.textContent='ready · scroll once';setTimeout(()=>loader.classList.add('hidden'),280)}
-      function updateCopy(index){copy.classList.add('changing');setTimeout(()=>{if(index<0){chapter.textContent='00 / signal ready';title.innerHTML='欲梦 H1<span class="outline">听见之外</span>';desc.textContent='把声音从左右之间释放出来。滚动一次，进入一段完整的空间声场。';facts.innerHTML='<div class="fact"><b>15s</b><span class="mono">cinematic signal</span></div><div class="fact"><b>4</b><span class="mono">chapters</span></div>'}else{const scene=scenes[index];chapter.textContent=scene.chapter;title.innerHTML=scene.title;desc.textContent=scene.desc;facts.innerHTML=scene.facts.map(([value,label])=>`<div class="fact"><b>${value}</b><span class="mono">${label}</span></div>`).join('')}now.textContent=String(Math.max(0,index+1)).padStart(2,'0');railButtons.forEach((button,i)=>button.classList.toggle('active',i===index));copy.classList.remove('changing')},220)}
-      function finish(index){film.pause();film.currentTime=Math.max(scenes[index].start,scenes[index].end-.025);locked=false;status.textContent=index===scenes.length-1?'signal complete':'ready · next chapter'}
-      async function playForward(index){if(!ready||locked||index<0||index>=scenes.length)return;cancelAnimationFrame(reverseFrame);locked=true;current=index;updateCopy(index);status.textContent='playing chapter '+String(index+1).padStart(2,'0');film.currentTime=scenes[index].start;flash.classList.remove('go');void flash.offsetWidth;flash.classList.add('go');try{await film.play()}catch{locked=false;status.textContent='tap a chapter to play'}}
-      function playBackward(){if(!ready||locked||current<0)return;film.pause();locked=true;const fromIndex=current,target=scenes[fromIndex].start;let from=film.currentTime;if(from<=target+.08)from=scenes[fromIndex].end;const started=performance.now();status.textContent='rewinding chapter '+String(fromIndex+1).padStart(2,'0');function step(timestamp){const next=from-((timestamp-started)/1000)*1.45;if(next<=target){film.currentTime=target;current=fromIndex-1;updateCopy(current);locked=false;status.textContent=current<0?'ready · scroll once':'ready · previous chapter';return}film.currentTime=next;reverseFrame=requestAnimationFrame(step)}reverseFrame=requestAnimationFrame(step)}
-      function navigate(direction){if(direction>0)playForward(Math.min(current+1,scenes.length-1));else playBackward()}
-      film.addEventListener('loadedmetadata',setReady);film.addEventListener('canplay',setReady,{once:true});film.addEventListener('timeupdate',()=>{const duration=Number.isFinite(film.duration)?film.duration:15;progress.style.width=Math.min(100,film.currentTime/duration*100)+'%';time.textContent=film.currentTime.toFixed(1).padStart(4,'0');if(locked&&current>=0&&!film.paused&&film.currentTime>=scenes[current].end)finish(current)});film.addEventListener('error',()=>{loader.classList.add('hidden');status.textContent='film unavailable · still mode';ready=true});setTimeout(()=>{if(film.readyState>=1)setReady()},1800);
-      window.addEventListener('wheel',event=>{event.preventDefault();if(Math.abs(event.deltaY)<8||locked)return;navigate(event.deltaY>0?1:-1)},{passive:false});
+      const layers=[...document.querySelectorAll('.scene')],buttons=[...document.querySelectorAll('.rail button')],copy=document.querySelector('#copy'),chapter=document.querySelector('#chapter'),title=document.querySelector('#title'),desc=document.querySelector('#desc'),facts=document.querySelector('#facts'),now=document.querySelector('#now'),status=document.querySelector('#status'),progress=document.querySelector('#progress'),flash=document.querySelector('#flash'),loader=document.querySelector('#loader');
+      let current=0,locked=false,touchStart=0;
+      function update(index){const scene=scenes[index];copy.classList.add('changing');setTimeout(()=>{chapter.textContent=scene.chapter;title.innerHTML=scene.title;desc.textContent=scene.desc;facts.innerHTML=scene.facts.map(([v,l])=>`<div class="fact"><b>${v}</b><span class="mono">${l}</span></div>`).join('');now.textContent=String(index+1).padStart(2,'0');status.textContent=scene.status;copy.classList.remove('changing')},260);layers.forEach((layer,i)=>layer.classList.toggle('active',i===index));buttons.forEach((button,i)=>button.classList.toggle('active',i===index));progress.style.width=((index+1)/scenes.length*100)+'%';flash.classList.remove('go');void flash.offsetWidth;flash.classList.add('go')}
+      function go(index){if(locked||index===current||index<0||index>=scenes.length)return;locked=true;current=index;update(index);setTimeout(()=>{locked=false},1500)}
+      function navigate(direction){go(current+(direction>0?1:-1))}
+      window.addEventListener('wheel',event=>{event.preventDefault();if(Math.abs(event.deltaY)<8)return;navigate(event.deltaY>0?1:-1)},{passive:false});
       window.addEventListener('keydown',event=>{if(['ArrowDown','ArrowUp','Enter',' '].includes(event.key))event.preventDefault();if(event.key==='ArrowUp')navigate(-1);if(['ArrowDown','Enter',' '].includes(event.key))navigate(1)});
       window.addEventListener('touchstart',event=>{touchStart=event.touches[0].clientY},{passive:true});window.addEventListener('touchend',event=>{const distance=touchStart-event.changedTouches[0].clientY;if(Math.abs(distance)>45)navigate(distance>0?1:-1)},{passive:true});
-      railButtons.forEach(button=>button.addEventListener('click',()=>playForward(Number(button.dataset.scene))));sound.addEventListener('click',()=>{film.muted=!film.muted;sound.textContent=film.muted?'sound off':'sound on';sound.setAttribute('aria-pressed',String(!film.muted))});
+      buttons.forEach(button=>button.addEventListener('click',()=>go(Number(button.dataset.scene))));
+      const preload=layers.map(layer=>new Promise(resolve=>{const image=new Image();image.onload=resolve;image.onerror=resolve;image.src=getComputedStyle(layer).backgroundImage.slice(5,-2)}));Promise.race([Promise.all(preload),new Promise(resolve=>setTimeout(resolve,1800))]).then(()=>loader.classList.add('hidden'));
     </script>
   </body>
 </html>
