@@ -1,4 +1,5 @@
 .reference-review/
+image-style-library/
 assets/storyboard/
 storyboard-video-prompt.md
 .env
@@ -6,3 +7,5 @@ storyboard-video-prompt.md
 *.log
 Thumbs.db
 .DS_Store
+photorec.*
+视频恢复/
